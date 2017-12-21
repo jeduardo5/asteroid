@@ -59,6 +59,7 @@ end
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
+   config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
@@ -83,7 +84,6 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   config.authentication_keys = [ :login ]
 
-  config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
