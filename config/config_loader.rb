@@ -4,6 +4,7 @@ require 'ostruct'
 module ConfigLoader
   DEFAULT_CONFIGS = "/config/config.defaults.yml"
   USER_CONFIGS = "/config/config.yml"
+  SECRET_CONFIGS = "/config/application.yml"
 
   module_function
 
@@ -16,10 +17,12 @@ module ConfigLoader
   def load_app_config
     default_configs = read_yaml_file(DEFAULT_CONFIGS)
     user_configs = read_yaml_file(USER_CONFIGS)
+    secret_configs = read_yaml_file("/config/application.yml")
     environment_configs = Maybe(ENV).or_else({})
 
-    # Order: default, user, env
-    config_order = [default_configs, user_configs, environment_configs]
+
+    # Order: default, user, env , secret
+    config_order = [default_configs, user_configs, environment_configs, secret_configs]
 
     configs = config_order.inject { |a, b| a.merge(b) }
     OpenStruct.new(configs.symbolize_keys)

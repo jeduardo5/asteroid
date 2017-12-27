@@ -5,6 +5,7 @@ config/*.sphinx.conf
 config/database.yml
 config/config.yml
 config/session_secret
+config/application.yml
 config/gmaps_api_key.yml
 config/translation.yml
 tmp/
