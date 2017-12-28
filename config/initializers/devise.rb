@@ -59,6 +59,7 @@ end
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
+  if Rails.env.production?
    config.secret_key = APP_CONFIG.DEVISE_SECRET_KEY  #ENV['DEVISE_SECRET_KEY'] if Rails.env.production
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
